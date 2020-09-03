@@ -24,7 +24,6 @@ class TrafficLight:
         time_dict = {"red": 7, "yellow": 2, "green": 5}
         light_tuple = ("red", "yellow", "green", "yellow")
         num = 0
-        time_start = time.time()
 
         for en, el in enumerate(light_tuple, 1):  # определяется стартовый цвет
             if el == self.__color:
@@ -33,9 +32,13 @@ class TrafficLight:
             print("Цвет не входит в диапазон. Выход из программы")
             exit()
         i = 0
+        res_time = 0
         while i < blink:  # можно было бы бесконечный цикл импортировать
-            print(f'На {round(time.time() - time_start)} секунде на светофоре будет цвет - {self.__color}')
-            time.sleep(time_dict[self.__color])
+            time_start = time.time()
+            print(f'На {res_time} секунде на светофоре будет цвет - {self.__color}')
+            while (time.time() - time_start) < (time_dict[self.__color]):
+                pass
+            res_time += time_dict[self.__color]
             num += 1
             if num > 4:
                 num = 1
@@ -45,3 +48,4 @@ class TrafficLight:
 
 li1 = TrafficLight()
 li1.running("Green", 12)  # запускается светофор
+print("Наблюдение завершено")
