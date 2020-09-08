@@ -6,7 +6,7 @@
 Реализовать общий подсчет расхода ткани. Проверить на практике полученные на этом уроке знания: реализовать
  абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property."""
 
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Clothes(ABC):
@@ -16,9 +16,9 @@ class Clothes(ABC):
         self.colour = colour
         self.size = size
 
-    @property
+    @abstractmethod
     def cloth_con(self):
-        return self.size * 3.3 + 3.3
+        pass
 
 
 class Coat(Clothes):
@@ -42,9 +42,8 @@ class Costume(Clothes):
 
 
 if __name__ == '__main__':
-    clo1 = Clothes("T-shirt", "White", 42)
     coat1 = Coat("Demi-season coat", "Black", 144, 5200)
-    cost1 = Costume("Classic costume", "Blue", 102, 4200)
+    cost2 = Costume("Classic costume", "Blue", 102, 4200)
 
-    print(f'Общий расход ткани на {clo1.name}, {coat1.name}, {cost1.name} сотавил'
-          f' {clo1.cloth_con + clo1.cloth_con + cost1.cloth_con :.2f} п.м.')
+    print(f'Общий расход ткани на, {coat1.name}, {cost2.name} сотавил'
+          f' {coat1.cloth_con + cost2.cloth_con :.2f} п.м.')
